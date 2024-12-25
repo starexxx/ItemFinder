@@ -6,7 +6,7 @@ from uuid import uuid4
 
 BOT_TOKEN = 'BOT_TOKEN'
 JSON_URL = 'https://raw.githubusercontent.com/starexxx/ItemID/refs/heads/main/itemData.json'
-ICON_URL_BASE = 'https://raw.githubusercontent.com/jinix6/ff-resources/main/pngs/300x300/'
+ICON_URL_BASE = 'https://raw.githubusercontent.com/starexxx/ff-resources/main/pngs/300x300/'
 
 data = []
 previous_message_id_user = None
@@ -30,27 +30,27 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
 
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    global previous_message_id_user, previous_message_id_bot  # Access the global previous message IDs
+    global previous_message_id_user, previous_message_id_bot
 
-    # Delete previous user message if it exists
+    
     if previous_message_id_user:
         try:
             await update.message.chat.delete_message(previous_message_id_user)
         except:
             pass
 
-    # Delete previous bot message if it exists
+    
     if previous_message_id_bot:
         try:
             await update.message.chat.delete_message(previous_message_id_bot)
         except:
             pass
 
-    # Send the new message and store the message ID
+    
     message_text = update.message.text
     escaped_text = escape_markdown(message_text)
 
-    if message_text.isdigit():  # Check if the message is a number
+    if message_text.isdigit():  
         result_item = next((item for item in data if item['itemID'] == message_text), None)
         result = result_item
     else:
@@ -58,10 +58,10 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         result = result_name
 
     if result:
-        # Generate the icon image URL
+        
         icon_url = f"{ICON_URL_BASE}{result['icon']}.png"
 
-        # Send preview button with "Show Preview"
+        
         response = (
             f"*Name* `{escape_markdown(result['description'])}`\n"
             f"*Item ID* `{escape_markdown(result['itemID'])}`\n"
@@ -97,10 +97,10 @@ async def handle_button(update: Update, context: ContextTypes.DEFAULT_TYPE):
             if response.status_code == 200:
                 media = InputMediaPhoto(icon_url, caption=f"*Name* `{escape_markdown(result['description'])}`\n*Item ID* `{escape_markdown(result['itemID'])}`\n*Icon Name* `{escape_markdown(result['icon'])}`", parse_mode="MarkdownV2")
             else:
-                media = InputMedia(media_type="photo", media="https://via.placeholder.com/2048?text=STAREXX", caption=f"*Name* `{escape_markdown(result['description'])}`\n*Item ID* `{escape_markdown(result['itemID'])}`\n*Icon Name* `{escape_markdown(result['icon'])}`", parse_mode="MarkdownV2")
+                media = InputMedia(media_type="photo", media="https://via.placeholder.com/2048?text=STAREXX+7", caption=f"*Name* `{escape_markdown(result['description'])}`\n*Item ID* `{escape_markdown(result['itemID'])}`\n*Icon Name* `{escape_markdown(result['icon'])}`", parse_mode="MarkdownV2")
 
             await query.edit_message_media(media=media)
-            # Remove the "Show Preview" button after showing the image
+            
             await query.edit_message_reply_markup(reply_markup=None)
         else:
             await query.edit_message_text("Item not found.")
@@ -163,3 +163,11 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+# Created By
+#  ____  _
+# / ___|| |_ __ _ _ __ _____  ____  __
+# \___ \| __/ _` | '__/ _ \ \/ /\ \/ /
+# ___) | || (_| | | |  __/>  <  >  <
+# |____/ \__\__,_|_|  \___/_/\_\/_/\_\
