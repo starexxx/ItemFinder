@@ -1,7 +1,10 @@
+<p align="center">
+  <img src="https://raw.githubusercontent.com/0xMe/ItemFinder/refs/heads/main/project-banner.png" />
+  <br />
+  <b>ItemFinder</b>
+</p>
 
-# ItemFinder Bot
-
-ItemFinder is a Telegram bot designed to retrieve and display item information from a JSON data source. This bot allows users to search for items by their ID or description and provides item previews with details and icons.
+**ItemFinder** is a Telegram bot designed to retrieve and display item information from a JSON data source. This bot allows users to search for items by their ID or description and provides item previews with details and icons.
 
 ## Features
 
